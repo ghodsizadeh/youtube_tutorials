@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import Optional
-
+from stock import HandleStock
 
 class StockItem(BaseModel):
     name: str
@@ -32,7 +32,9 @@ def power(x: int):
 ## path parameters
 @app.get("/stock/{id}")
 def get_stock_detail(id: int):
-    return {"stock_id": id}
+    hs = HandleStock(id=id)
+    res = hs.get_analysis()
+    return res
 
 
 ##query parameters
@@ -50,4 +52,9 @@ def get_stock_with_query_params(stock_industry: int = None):
 @app.post("/stock/buy")
 def buy_stock(item: StockItem):
 
-    return {"stock_name": item.name, "shares": item.shares,"price": item.price, 'total_price': item.shares*item.price }
+    return {
+        "stock_name": item.name,
+        "shares": item.shares,
+        "price": item.price,
+        "total_price": item.shares * item.price,
+    }
