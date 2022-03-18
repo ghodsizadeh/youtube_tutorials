@@ -4,7 +4,7 @@ import numpy as np
 
 # create random data with name , age , income and IQ
 
-names = ['name'+str(i) for i in range(100)]
+names = [f'name{str(i)}' for i in range(100)]
 # create age data random from 16 to 80 with mean of 40 and normal distribution
 ages = np.random.randint(16,80,100)
 # create income data random from 1000 to 10000 with mean of 5000 and normal distribution

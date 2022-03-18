@@ -28,8 +28,12 @@ class HandleStock:
         tmp_df = df.set_index('dtyyyymmdd')
         last_10_days_price = tmp_df.iloc[:10].close
         last_10_days_price =  last_10_days_price.to_list()
-        response = {'max_price ': float(max_price), 'min_price': float(min_price), "last_10_day":last_10_days_price, 'start_date': float(start_date)}
-        return response
+        return {
+            'max_price ': float(max_price),
+            'min_price': float(min_price),
+            "last_10_day": last_10_days_price,
+            'start_date': float(start_date),
+        }
 
 
 
