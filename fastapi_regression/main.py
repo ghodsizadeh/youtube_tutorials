@@ -33,8 +33,7 @@ def power(x: int):
 @app.get("/stock/{id}")
 def get_stock_detail(id: int):
     hs = HandleStock(id=id)
-    res = hs.get_analysis()
-    return res
+    return hs.get_analysis()
 
 
 ##query parameters
@@ -42,7 +41,7 @@ def get_stock_detail(id: int):
 def get_stock_with_query_params(stock_industry: int = None):
     if not stock_industry:
         return [{"stock_id": i} for i in range(10)]
-    elif stock_industry in [1, 2, 3, 4]:
+    elif stock_industry in {1, 2, 3, 4}:
         return [{"stock_id": i} for i in range(4)]
     else:
         return []
